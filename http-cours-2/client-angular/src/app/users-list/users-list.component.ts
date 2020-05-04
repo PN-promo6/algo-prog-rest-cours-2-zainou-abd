@@ -7,11 +7,16 @@ import { DataService } from "../data.service";
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
-
-  constructor(private dataService:DataService) { }
+  users: any;
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.fetchUsers();
+    this.dataService.fetchUsers()
+      .subscribe(
+        res => { this.users = res },
+        error => {
+          console.log(error);
+        }
+      );
   }
-
 }

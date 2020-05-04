@@ -8,15 +8,8 @@ import { Observable } from "rxjs";
 export class DataService {
 
   constructor(private httpClient:HttpClient) { }
-  public fetchUsers() {
-    this.httpClient.get('http://localhost:3000/users')
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+  public fetchUsers():Observable<any> {
+    let usersObservable:Observable<any> = this.httpClient.get('http://localhost:3000/users')
+    return usersObservable;
   }
 }
